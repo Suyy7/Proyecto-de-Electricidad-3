@@ -12,6 +12,7 @@ public:
 private:
     string nombre;
     string apellido;
+    string carilla;
 };
 Persona::Persona()
 {
