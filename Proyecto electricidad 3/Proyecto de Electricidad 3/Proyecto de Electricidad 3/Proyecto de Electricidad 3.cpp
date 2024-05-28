@@ -11,7 +11,7 @@ public:
     virtual void mostrar();
 private:
     string nombre;
-
+    string apellido;
 };
 Persona::Persona()
 {
