@@ -2,6 +2,16 @@
 #include <iostream>
 #include <string.h>
 using namespace std;
+// List cross
+
+struct lista {
+    int date;
+    lista* sig;
+};
+
+
+
+
 //- - - - - - - - - - - - - Class Deff  - - - - - - - - - - - - - - 
 class Persona
 {
@@ -29,7 +39,7 @@ public:
 private:
 
 };
-Tecnico::Tecnico();
+Tecnico::Tecnico() : Persona(){}
 Tecnico::~Tecnico()
 {
 }
@@ -42,7 +52,7 @@ public:
 private:
 
 };
-IngenieroElectrico::IngenieroElectrico()
+IngenieroElectrico::IngenieroElectrico() : Persona()
 {
 }
 IngenieroElectrico::~IngenieroElectrico()
@@ -52,7 +62,7 @@ IngenieroElectrico::~IngenieroElectrico()
 
 static void menu();
 void ingresoNuevo();
-bool comparacion(char, char);
+bool comparacion(string, string);
 void ingresoSistema();
 
 
@@ -71,17 +81,17 @@ int main()
 
 static void menu() {
 
-    string usuario = NULL;
-    string contraseña = NULL;
+    string usuario;
+    string contraseña;
 
-    char rpta[3];
-    const char rptaN = "no";
+    string rpta = "si";
+    const char rptaN = 'no';
 
     cout << "\n Dime si eres nuevo. ";
-    cin.getline(rpta, 3);
-    _strlwr(rpta);
+    cin >> rpta;
+    
 
-    if (rpta = "si") {
+    if (rpta == "si") {
         ingresoNuevo(); // Lista 
     }
     else
@@ -89,7 +99,7 @@ static void menu() {
         cout << "\n Ingrese su contraseña y usuario. ";
         cout << "\n Usuario: ";  cin >> usuario;
         cout << "\n Contraseña: "; cin >> contraseña;
-        if (comparacion(usuario) && comparacion(contraseña)) {
+        if (comparacion(usuario, contraseña) && comparacion(usuario,contraseña)) {
             // Ingreso al sistema;
         }
         else {  // Mensaje de fallo
@@ -122,30 +132,42 @@ void ingresoNuevo() {
 };
 
 
-bool comparacion(char a[], char b[]) { // comparacion de char sea contra o usuario. 
-    return (a = b) ? true : false;
+bool comparacion(string a, string b) { // comparacion de char sea contra o usuario. 
+    return (a == b) ? true : false;
+};
+bool comparacion(string a, string b, string c, string d) { // comparacion de char sea contra o usuario. 
+    return (a == b && c == d) ? true : false;
 };
 void ingresoSistema() {
+    int opc = NULL;
+
     cout << "\t Bienvenido al sistema. " << endl;
-    switch ()
+    cout << "\n Digite una opcion luego del siguiente menu. ";
+        cout << "\n - 1. Calculos Electricos. " << endl;
+        cout << "\n - 2. Leyes, normativas y convenios. " << endl;
+        cout << "\n - 3. Planos guardados. " << endl;        
+        cout << "\n - 4. Herramientas de medicion y sus usos. " << endl;
+        cout << "\n - 5. Contactos de recomendacion. " << endl;
+        cout << "\n - 6. Ayuda de la empresa. " << endl;
+        cout << "\n Aqui >>>"; cin >> opc;
+
+    switch (opc)
     {
     case 1:
-        cout << "\n - 1. Calculos Electricos. " << endl;
+        
         break;
     case 2:
-        cout << "\n - 2. Leyes, normativas y convenios. " << endl;
+        
         break;
     case 3:
-        cout << "\n - 3. Planos guardados. " << endl;
+        
         break;
-    case 4:
-        cout << "\n - 4. Herramientas de medicion y sus usos. " << endl;
+    case 4:;
         break;
-    case 5:
-        cout << "\n - 5. Contactos de recomendacion. " << endl;
+    case 5:;
         break;
     case 6:
-        cout << "\n - 6. Ayuda de la empresa. " << endl;
+       
         break;
     default:
         cout << "\n Opcion no encontrada... ";
