@@ -12,11 +12,11 @@ struct lista {
 
 
 
-//- - - - - - - - - - - - - Class Deff  - - - - - - - - - - - - - - 
+//------------------------ Class padre ---------------------------
 class Persona
 {
 public:
-    Persona();
+    Persona(string , string, string);
     ~Persona();
     virtual void mostrar();
 private:
@@ -24,36 +24,57 @@ private:
     string apellido;
     string carilla;
 };
-Persona::Persona()
+Persona::Persona(string _nombre, string _apellido, string _carilla)
 {
+    nombre = nombre;
+    apellido = _apellido;
+    carilla = _carilla;
 }
 Persona::~Persona()
 {
 }
+void Persona::mostrar() {
+    cout << "\nSon: " << nombre << " " << apellido << " " << carilla;
+}
+
+
+// ----------------------- Class que hereda persona --------------------
 class Tecnico : public Persona
 {
 public:
-    Tecnico();
+    Tecnico(string, string, string, int);
     ~Tecnico();
+    void mostrarCarnet();
 
 private:
+    int carnetID;
 
 };
-Tecnico::Tecnico() : Persona(){}
+Tecnico::Tecnico(string _nombre,string _apellido,string _carilla, int _carnetID) : Persona(_nombre, _apellido, _carilla){
+    carnetID = _carnetID;
+}
 Tecnico::~Tecnico()
 {
 }
+void Tecnico::mostrarCarnet() {
+    mostrar();
+    cout << "\nCarnet -> " << carnetID;
+}
+
+// ------------------- Class Ingeniero hereda Persona ------------------
 class IngenieroElectrico : public Persona
 {
 public:
-    IngenieroElectrico();
+    IngenieroElectrico(string, string, string, string);
     ~IngenieroElectrico();
 
 private:
+    string titulo;
 
 };
-IngenieroElectrico::IngenieroElectrico() : Persona()
+IngenieroElectrico::IngenieroElectrico(string _nombre, string _apellido, string _carilla, string _titulo) : Persona(_nombre,_apellido, _carilla)
 {
+    titulo = _titulo;
 }
 IngenieroElectrico::~IngenieroElectrico()
 {
@@ -64,6 +85,7 @@ static void menu();
 void ingresoNuevo();
 bool comparacion(string, string);
 void ingresoSistema();
+bool preguntas(string rpta);
 
 
 int main()
@@ -172,5 +194,15 @@ void ingresoSistema() {
     default:
         cout << "\n Opcion no encontrada... ";
         break;
+    }
+}; 
+bool preguntas(string rpta) { // funcion depregunta para la Asignacion de respuesta ;
+    string rpta;
+    cin >> rpta;
+    if (rpta== "si") {
+        return true;
+    }
+    else {
+        return false;
     }
 };
