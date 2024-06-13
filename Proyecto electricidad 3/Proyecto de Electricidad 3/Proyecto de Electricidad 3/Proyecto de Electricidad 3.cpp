@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <string.h>
+#include <Windows.h>
 using namespace std;
 // List cross
 string usuariobase = "suy";
@@ -94,6 +95,7 @@ bool comparacion(string, string);
 bool comparacion2(string, string, string, string);
 void ingresoSistema();
 bool preguntas(string rpta);
+void subEleccionDecalculos();
 // Prototipe function of electrical 
 
 float qulomb(float, float, float, float);
@@ -200,7 +202,7 @@ void ingresoSistema() {
     switch (opc)
     {
     case 1:
-        throw;
+        subEleccionDecalculos();
         
         break;
     case 2:
@@ -224,12 +226,7 @@ void ingresoSistema() {
 bool preguntas(string rpta) { // funcion depregunta para la Asignacion de respuesta ;
     string rpta;
     cin >> rpta;
-    if (rpta== "si") {
-        return true;
-    }
-    else {
-        return false;
-    }
+    return (rpta != "si") ? true : false;
 };
 
 float qulomb(float a, float b, float c, float d) {
@@ -243,13 +240,13 @@ float ohmR(float a, float b) {
     return a / b;
 };
 float tensionV(float a, float b) {
-    return a * b;
+    return a / b;
 };
 float potencia(float a, float b) {
     return a * b;
 };
 float potenciaAp(float a, float b) {
-    return sqrt((a * a) + (b * b));
+    return sqrt(pow(a,2) + pow(b,2));
 
 };
 float calorQ(float a, float b, float t) {
@@ -259,3 +256,104 @@ float energia(float a, float b) {
     return a * b;
 
 };
+
+void subEleccionDecalculos() {
+    cout << "\n Dime que formula matematica quieres: ";
+    int opc;
+    float v, i, r, p, s, q, t, fp, e;
+    cout << "\n -> 1. Energia. ";
+    cout << "\n -> 2. Amperaje / Intensidad. ";
+    cout << "\n -> 3. Voltios / Tension. ";
+    cout << "\n -> 4. Resistencia / Ohm. ";
+    cout << "\n -> 5. Potencia / watts. ";
+    cout << "\n -> 6. Calor en conductor. ";
+    cout << "\n -> 7. Potencia Aparente. ";
+    cout << "\n -> 8. Coulomb / Qlmb. ";
+    cout << "\n Volver. ";
+
+    cin >> opc;
+    switch (opc)
+    {
+
+    case 1:
+        cout << "\n -- Energia --";
+        cout << "\nDime la potencia en w: ";
+        cin >> p;
+        cout << "\nDime la tension en v: ";
+        cin >> t;
+        energia(p,t);
+        
+        break;
+    case 2: 
+        cout << "\n -- Intensidad / Amperaje -- ";
+        cout << "\nDime la potencia en w: ";
+        cin >> i;
+        cout << "\nDime la tension en v: ";
+        cin >> v;
+        potencia(i,v);
+
+        break;
+    case 3:
+        cout << "\n -- Voltios / Tension -- ";
+        cout << "\nDime la intensidad / amperaje: ";
+        cin >> i;
+        cout << "\nDime la potencia: ";
+        cin >> p;
+        tensionV(p, i);
+
+        break;
+    case 4:
+        cout << "\n -- Resistencia / Ohm -- ";
+
+        cout << "\nDime la tension: ";
+        cin >> v;
+        
+        cout << "\nDime el amperaje: ";
+        cin >> i;
+
+        ohmR(v, i);
+
+        break;
+    case 5:
+        cout << "\n -- Potencia / Watts -- ";
+
+        cout << "\nDime la tension: ";
+        cin >> v;
+
+        cout << "\nDime el amperaje:  ";
+        cin >> i;
+
+        potencia(v,i);
+        break;
+    case 6:
+        float resutlado;
+        cout << "\n -- Ley de joule -- ";
+
+        cout << "\nDime la intensidad: ";
+        cin >> i;
+
+        cout << "\nDime la resistencia: "; 
+        cin >> r;
+
+        cout << "\nDime el tiempo: ";
+        cin >> t;
+        calorQ(i,r,t);
+        resultado = calor;
+        cout << "\n Es: " << resutlado;
+
+
+        break;
+    case 7:
+        cout << "\n -- Potencia aparente -- ";
+
+
+        break;
+    case 8:
+        cout << "\n -- Coulomb / Qlmb -- ";
+    default: 
+        cout << "\n La formula no esta. Sigue buscando.";
+        break;
+    }
+
+
+}
