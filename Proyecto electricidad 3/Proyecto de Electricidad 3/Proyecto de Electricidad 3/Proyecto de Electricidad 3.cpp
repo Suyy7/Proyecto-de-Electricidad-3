@@ -87,6 +87,8 @@ IngenieroElectrico::IngenieroElectrico(string _nombre, string _apellido, string 
 IngenieroElectrico::~IngenieroElectrico()
 {
 }
+
+// -----------------------------------------------------------------------//
 // - - - - - - - - - - - -  Portotipe of function - - - - - - - - - -
 
 static void menu();
@@ -96,9 +98,14 @@ bool comparacion2(string, string, string, string);
 void ingresoSistema();
 bool preguntas(string rpta);
 void subEleccionDecalculos();
-// Prototipe function of electrical 
+void menuDeLeyes();
+void planosGuardados();
+void herramientasYusos();
+void contactos();
+void ayudaDeEmpresa();
+// Prototipe function of electrical calculates
 
-float qulomb(float, float, float, float);
+
 float intensidadA(float, float);
 float ohmR(float, float);
 float tensionV(float, float);
@@ -111,7 +118,7 @@ float energia(float, float);
 
 int main()
 {
-    cout << "\n Menu de ingreso ";
+    cout << "\t Menu de ingreso ";
     menu();
 
 
@@ -178,7 +185,7 @@ void ingresoNuevo() {
 
 };
 
-
+// Comaparacion basica de usuario. 
 bool comparacion(string a, string b) { // comparacion de char sea contra o usuario. 
     return (a == b) ? true : false;
 };
@@ -188,50 +195,67 @@ bool comparacion2(string a, string b, string c, string d) { // Comparacion para 
 void ingresoSistema() {
     int opc = NULL;
 
-    cout << "\t Bienvenido al sistema. " << endl;
-    cout << "\n Digite una opcion luego del siguiente menu. ";
+    do {
+        cout << "\t Bienvenido al sistema. " << endl;
+        cout << "\n Digite una opcion luego del siguiente menu. ";
         cout << "\n - 1. Calculos Electricos. " << endl;
         cout << "\n - 2. Leyes, normativas y convenios. " << endl;
-        cout << "\n - 3. Planos guardados. " << endl;        
+        cout << "\n - 3. Planos guardados. " << endl;
         cout << "\n - 4. Herramientas de medicion y sus usos. " << endl;
         cout << "\n - 5. Contactos de recomendacion. " << endl;
         cout << "\n - 6. Ayuda de la empresa. " << endl;
         cout << "\n - 7. Desea salir? . " << endl;
-        cout << "\n Aqui >>>"; cin >> opc;
+        cout << "\n Aqui >>> "; cin >> opc;
 
-    switch (opc)
-    {
-    case 1:
-        subEleccionDecalculos();
+        switch (opc)
+        {
+        case 1:
+            
+            subEleccionDecalculos();
+
+            break;
+
+        case 2:
+            
+            menuDeLeyes();
+
+            break;
+
+        case 3:
+
+            planosGuardados();
+
+            break;
+        case 4:
+
+            herramientasYusos();
+
+            break;
+        case 5:
+
+            contactos();
+
+            break;
+        case 6:
+
+            ayudaDeEmpresa();
+
+            break;
+        case 7: 
+            break;
+
         
-        break;
-    case 2:
-        
-        break;
-    case 3:
-        
-        break;
-    case 4:;
-        break;
-    case 5:;
-        break;
-    case 6:
-       
-        break;
-    default:
-        cout << "\n Opcion no encontrada... ";
-        break;
-    }
+        }
+    } while (opc != 7);
 }; 
+
 bool preguntas(string rpta) { // funcion depregunta para la Asignacion de respuesta ;
     string rpta;
     cin >> rpta;
-    return (rpta != "si") ? true : false;
+    return (rpta == "si") ? true : false;
 };
-
-float qulomb(float a, float b, float c, float d) {
-    return a = b * ((c * c) / pow(d, 2));
-};
+// Formulas Matematicas electricas basicas para las funciones 
+// que necesitan realizar medidas. 
 
 float intensidadA(float a, float b) {
     return a / b;
@@ -258,102 +282,175 @@ float energia(float a, float b) {
 };
 
 void subEleccionDecalculos() {
-    cout << "\n Dime que formula matematica quieres: ";
+
     int opc;
-    float v, i, r, p, s, q, t, fp, e;
-    cout << "\n -> 1. Energia. ";
-    cout << "\n -> 2. Amperaje / Intensidad. ";
-    cout << "\n -> 3. Voltios / Tension. ";
-    cout << "\n -> 4. Resistencia / Ohm. ";
-    cout << "\n -> 5. Potencia / watts. ";
-    cout << "\n -> 6. Calor en conductor. ";
-    cout << "\n -> 7. Potencia Aparente. ";
-    cout << "\n -> 8. Coulomb / Qlmb. ";
-    cout << "\n Volver. ";
+    float v, i, r, p, s, q, t, fp, e, resultado, calor;
+    do {
+        cout << "\n Dime que formula matematica quieres: ";
 
-    cin >> opc;
-    switch (opc)
-    {
+        cout << "\n -> 1. Energia. ";
+        cout << "\n -> 2. Amperaje / Intensidad. ";
+        cout << "\n -> 3. Voltios / Tension. ";
+        cout << "\n -> 4. Resistencia / Ohm. ";
+        cout << "\n -> 5. Potencia / watts. ";
+        cout << "\n -> 6. Calor en conductor. ";
+        cout << "\n -> 7. Volver. ";
 
-    case 1:
-        cout << "\n -- Energia --";
-        cout << "\nDime la potencia en w: ";
-        cin >> p;
-        cout << "\nDime la tension en v: ";
-        cin >> t;
-        energia(p,t);
-        
-        break;
-    case 2: 
-        cout << "\n -- Intensidad / Amperaje -- ";
-        cout << "\nDime la potencia en w: ";
-        cin >> i;
-        cout << "\nDime la tension en v: ";
-        cin >> v;
-        potencia(i,v);
+        cin >> opc;
+        switch (opc) {
+        case 1:
+            cout << "\n -- Energia --";
 
-        break;
-    case 3:
-        cout << "\n -- Voltios / Tension -- ";
-        cout << "\nDime la intensidad / amperaje: ";
-        cin >> i;
-        cout << "\nDime la potencia: ";
-        cin >> p;
-        tensionV(p, i);
+            cout << "\nDime la potencia en w: ";
+            cin >> p;
+            cout << "\nDime la tension en v: ";
+            cin >> t;
 
-        break;
-    case 4:
-        cout << "\n -- Resistencia / Ohm -- ";
+            resultado = energia(p, t);
+            cout << resultado;
 
-        cout << "\nDime la tension: ";
-        cin >> v;
-        
-        cout << "\nDime el amperaje: ";
-        cin >> i;
+            break;
+        case 2:
+            cout << "\n -- Intensidad / Amperaje -- ";
 
-        ohmR(v, i);
+            cout << "\nDime la potencia en w: ";
+            cin >> i;
+            cout << "\nDime la tension en v: ";
+            cin >> v;
 
-        break;
-    case 5:
-        cout << "\n -- Potencia / Watts -- ";
+            resultado = potencia(i, v);
+            cout << resultado;
 
-        cout << "\nDime la tension: ";
-        cin >> v;
+            break;
+        case 3:
+            cout << "\n -- Voltios / Tension -- ";
 
-        cout << "\nDime el amperaje:  ";
-        cin >> i;
+            cout << "\nDime la intensidad / amperaje: ";
+            cin >> i;
+            cout << "\nDime la potencia: ";
+            cin >> p;
 
-        potencia(v,i);
-        break;
-    case 6:
-        float resutlado;
-        cout << "\n -- Ley de joule -- ";
+            resultado = tensionV(p, i);
+            cout << resultado << endl;
 
-        cout << "\nDime la intensidad: ";
-        cin >> i;
+            break;
+        case 4:
+            cout << "\n -- Resistencia / Ohm -- ";
 
-        cout << "\nDime la resistencia: "; 
-        cin >> r;
+            cout << "\nDime la tension: ";
+            cin >> v;
+            cout << "\nDime el amperaje: ";
+            cin >> i;
 
-        cout << "\nDime el tiempo: ";
-        cin >> t;
-        calorQ(i,r,t);
-        resultado = calor;
-        cout << "\n Es: " << resutlado;
+            resultado = ohmR(v, i);
+            cout << resultado << endl;
 
+            break;
+        case 5:
+            cout << "\n -- Potencia / Watts -- ";
 
-        break;
-    case 7:
-        cout << "\n -- Potencia aparente -- ";
+            cout << "\nDime la tension: ";
+            cin >> v;
+            cout << "\nDime el amperaje:  ";
+            cin >> i;
 
+            resultado = potencia(v, i);
+            cout << resultado;
 
-        break;
-    case 8:
-        cout << "\n -- Coulomb / Qlmb -- ";
-    default: 
-        cout << "\n La formula no esta. Sigue buscando.";
-        break;
-    }
+            break;
+        case 6:
 
+            cout << "\n -- Ley de joule -- ";
+
+            cout << "\nDime la intensidad: ";
+            cin >> i;
+            cout << "\nDime la resistencia: ";
+            cin >> r;
+            cout << "\nDime el tiempo: ";
+            cin >> t;
+
+            resultado = calorQ(i, r, t);
+            cout << "\n Es: " << resultado << " C";
+
+            break;
+        }
+    } while (opc != 7);
 
 }
+
+void menuDeLeyes() {
+    int opc;
+    
+    do {
+        cout << "\n\t- Menu de Leyes y Normativas - ";
+        cout << "\n - Dime que estas buscando. ";
+        cout << "\n - 1. Normativa de acometida domiciliaria. ";
+        cout << "\n - 2. Normativa de tablero electrico domiciliario. ";
+        cout << "\n - 3. Normativa de cargas, grosor y tipo de cable. ";
+        cout << "\n - 4. Normativa de acometida para locales. ";
+        cout << "\n - 5. Normativa de tablero para locales. ";
+        cout << "\n - 6. Salir. ";
+        cout << "\n -> Dime tu eleccion: ";
+        cin >> opc;
+
+        switch (opc)
+        {
+        case 1: 
+            cout << " \n Normativa de acometida domiciliaria.";
+
+            break;
+        case 2: 
+            cout << "\n Normativa de tablero electrico domiciliario. ";
+
+            break;
+        case 3: 
+            cout << "\n Normativa de cargas, grosor y tipo de cable.";
+
+            break;
+        case 4: 
+            cout << "\n Normativa de acometida para locales.";
+
+            break;
+        case 5: 
+            cout << "\n Normativa de tablero para locales. "; 
+
+            break;
+        case 6: 
+            break;
+        }
+
+
+    } while (opc != 6);
+
+
+
+};
+void planosGuardados() {
+    int planos[10];
+    cout << "\n\t - Planos - ";
+    cout << "\n Plano " << planos[0]; 
+
+
+
+};
+void herramientasYusos() {
+    cout << "\n\t - Herramientas de medicion - "; 
+    cout << "\n Multimetro basico: ";
+    cout << "\n Pinza VoltAmperometrica. ";
+
+
+};
+void contactos() {
+    cout << "\n\t - Contactos - Clientes - Mas -";
+    cout << "\n Electricistas / Ingenieros ";
+    cout << "\n Clientes. ";
+
+
+
+};
+void ayudaDeEmpresa() {
+    cout << "\n\t - Ayuda de empresas / instituciones. -";
+    cout << "\n - Contacto de institucion. ";
+
+
+};
