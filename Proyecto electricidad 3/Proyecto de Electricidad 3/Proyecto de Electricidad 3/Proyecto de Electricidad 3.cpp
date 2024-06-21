@@ -103,6 +103,7 @@ void planosGuardados();
 void herramientasYusos();
 void contactos();
 void ayudaDeEmpresa();
+void datosNuevos();
 // Prototipe function of electrical calculates
 
 
@@ -167,20 +168,21 @@ static void menu() {
 
 }
 void ingresoNuevo() {
-    string nombre;
-    string apellido;
-    string nUsuario;
-    string contraseña;
-    string matricula;
-    string actividad;
+    string rta;
+    
 
 
     cout << "\t Bienvenido, nuevo usuario. " << endl;
-    cout << "\n Dime tu nombre: "; cin >> nombre;
-    cout << "\n Dime tu apellido: "; cin >> apellido;
-    cout << "\n Dime tu usuario: "; cin >> nUsuario;
-    cout << "\n Dime tu contraseña: "; cin >> contraseña;
-    cout << "\n Dime tu actividad: "; cin >> actividad;
+    cout << "\n Eres profesional? "; cin >> rta;
+    if (preguntas(rta)) {
+        datosNuevos();
+    }
+    else {
+        cout << "\n ¿Cliente? ";
+        datosNuevos();
+    }
+
+    
     
 
 };
@@ -251,6 +253,7 @@ void ingresoSistema() {
 
 bool preguntas(string rpta) { // funcion depregunta para la Asignacion de respuesta ;
     string rpta;
+    
     cin >> rpta;
     return (rpta == "si") ? true : false;
 };
@@ -451,6 +454,28 @@ void contactos() {
 void ayudaDeEmpresa() {
     cout << "\n\t - Ayuda de empresas / instituciones. -";
     cout << "\n - Contacto de institucion. ";
+
+
+}; 
+
+void datosNuevos() {
+    string nombre;
+    string apellido;
+    string nUsuario;
+    string contraseña;
+    string matricula;
+    string actividad;
+
+
+
+
+
+    cout << "\n Dime tu nombre: "; cin >> nombre;
+    cout << "\n Dime tu apellido: "; cin >> apellido;
+    cout << "\n Dime tu usuario: "; cin >> nUsuario;
+    cout << "\n Dime tu contraseña: "; cin >> contraseña;
+    cout << "\n Dime tu actividad: "; cin >> actividad;
+
 
 
 };
