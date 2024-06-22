@@ -24,25 +24,27 @@ struct lista {
 class Persona
 {
 public:
-    Persona(string , string, string);
+    Persona(string , string, int);
     ~Persona();
     virtual void mostrar();
 private:
+    string usuario;
+    string contraseña;
     string nombre;
     string apellido;
-    string carilla;
+    int edad;
 };
-Persona::Persona(string _nombre, string _apellido, string _carilla)
+Persona::Persona(string _nombre, string _apellido, int _edad)
 {
     nombre = nombre;
     apellido = _apellido;
-    carilla = _carilla;
+    edad = _edad;
 }
 Persona::~Persona()
 {
 }
 void Persona::mostrar() {
-    cout << "\nSon: " << nombre << " " << apellido << " " << carilla;
+    cout << "\nSon: " << nombre << " " << apellido << " " << edad;
 }
 
 
@@ -50,7 +52,7 @@ void Persona::mostrar() {
 class Tecnico : public Persona
 {
 public:
-    Tecnico(string, string, string, int);
+    Tecnico(string, string, int, int);
     ~Tecnico();
     void mostrarCarnet();
 
@@ -58,7 +60,7 @@ private:
     int carnetID;
 
 };
-Tecnico::Tecnico(string _nombre,string _apellido,string _carilla, int _carnetID) : Persona(_nombre, _apellido, _carilla){
+Tecnico::Tecnico(string _nombre,string _apellido,int _edad, int _carnetID) : Persona(_nombre, _apellido, _edad){
     carnetID = _carnetID;
 }
 Tecnico::~Tecnico()
@@ -73,15 +75,17 @@ void Tecnico::mostrarCarnet() {
 class IngenieroElectrico : public Persona
 {
 public:
-    IngenieroElectrico(string, string, string, string);
+    IngenieroElectrico(string, string, int, string, string);
     ~IngenieroElectrico();
 
 private:
     string titulo;
+    string matricula;
 
 };
-IngenieroElectrico::IngenieroElectrico(string _nombre, string _apellido, string _carilla, string _titulo) : Persona(_nombre,_apellido, _carilla)
+IngenieroElectrico::IngenieroElectrico(string _nombre, string _apellido, int _edad, string _titulo, string _matricula) : Persona(_nombre, _apellido, _edad)
 {
+    matricula = _matricula;
     titulo = _titulo;
 }
 IngenieroElectrico::~IngenieroElectrico()
@@ -144,7 +148,7 @@ static void menu() {
 
     if (rpta == "si") {
         ingresoNuevo(); // Lista 
-        ingresoSistema();
+        
     }
     else
     {  // Si no es nuevo ingresa al sistema. 
@@ -178,7 +182,7 @@ void ingresoNuevo() {
         datosNuevos();
     }
     else {
-        cout << "\n ¿Cliente? ";
+        cout << "\n Bienvenido Gente Normie ";
         datosNuevos();
     }
 
