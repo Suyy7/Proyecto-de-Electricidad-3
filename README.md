@@ -1,3 +1,7 @@
+<em> # Proyecto: Control electrico del hogar </em>
+
+
+
 El proyecto es personal y busca tener el objetico de el agilizar el trabajo de mediciones, calculos y recomendaciones en una pc o app. 
   - El proyecto en si consta de ingreso de usuario y una base datos segun sea matriculado o no.
   - Segun la categoria busca habilitar funciones
